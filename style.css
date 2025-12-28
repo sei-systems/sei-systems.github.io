@@ -1,0 +1,96 @@
+:root {
+    --black: #0a0a0c;
+    --blue: #0070f3;
+    --silver: #c0c0c8;
+    --dark-gray: #1a1a1e;
+    --white: #ffffff;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--silver);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: radial-gradient(circle at top, #001a33 0%, #0a0a0c 100%);
+    border-bottom: 1px solid #333;
+}
+
+h1 {
+    color: var(--white);
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -2px;
+}
+
+.highlight { 
+    color: var(--blue);
+    text-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.card {
+    background: var(--dark-gray);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid #222;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--blue);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card h3 {
+    color: var(--blue);
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.badge {
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+footer {
+    text-align: center;
+    padding: 4rem;
+    font-size: 0.85rem;
+    border-top: 1px solid #222;
+    color: #555;
+}
+
+a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
