@@ -3,17 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; }
-        .container { text-align: center; background: white; padding: 50px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #333; }
-    </style>
+    <title>Your Brand | Secure & Reliable</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Website Coming Soon</h1>
-        <p>This site is being built with SOC2 compliance in mind.</p>
-    </div>
+    <header>
+        <h1>Your Project Name</h1>
+        <nav>
+            <a href="index.html">Home</a> / 
+            <a href="about.html">About</a> / 
+            <a href="privacy.html">Compliance</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>The Future of Secure Web</h2>
+        <p>Welcome! We are building a platform that prioritizes security and transparency.</p>
+        
+        <blockquote>
+            "Security is not a product, but a process." — Bruce Schneier
+        </blockquote>
+
+        <section>
+            <h3>Our SOC2 Roadmap</h3>
+            <ul>
+                <li>✅ <strong>Domain Secured:</strong> Verified via GoDaddy.</li>
+                <li>✅ <strong>Audit Trail:</strong> Hosted on GitHub with full version history.</li>
+                <li>⏳ <strong>SSL/TLS:</strong> HTTPS encryption currently propagating.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Brand. Built with 🔒 integrity.</p>
+    </footer>
 </body>
 </html>
