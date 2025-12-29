@@ -9,102 +9,121 @@
 <body>
 
     <header>
-        <span class="badge">Experimental Environment</span>
+        <span class="badge">Live Technical Demonstration</span>
         <h1>Interactive <span class="highlight">Labs</span></h1>
-        <p>Real-world automation functions built for security and compliance.</p>
+        <p>A hands-on environment showcasing SOC2-compliant AI audit automation.</p>
     </header>
 
     <div class="container">
-        
-        <div class="lab-grid">
-            <div class="lab-card">
-                <span class="lab-status">Active</span>
-                <h3>AI Log Auditor (Python Port)</h3>
-                <p>Simulate a 500-line system dump and watch the AI extract SOC2 control violations using real-time triage logic.</p>
-                <button class="lab-btn" onclick="scrollToLab()">Launch Lab</button>
-            </div>
-
-            <div class="lab-card" style="opacity: 0.6;">
-                <span class="lab-status" style="color:#666;">Coming Soon</span>
-                <h3>Auto-Redactor</h3>
-                <p>A PII-masking engine that identifies and redacts sensitive data from raw text strings before sending to LLMs.</p>
-                <button class="lab-btn" disabled>Locked</button>
-            </div>
-        </div>
-
-        <hr style="margin: 4rem 0; border: 0; border-top: 1px solid #222;">
-
         <section id="active-lab">
-            <h2>Lab 01: <span class="highlight">The Audit Haystack</span></h2>
-            <p>Step 1: Generate logs. Step 2: Run the Auditor (based on <code>audit_ai.py</code>).</p>
-            
-            <div style="display: flex; gap: 1rem;">
-                <button class="lab-btn" onclick="generateLogs()">1. Generate 500 Logs</button>
-                <button id="run-audit-btn" class="lab-btn" style="display:none;" onclick="simulateAudit()">2. Run AI Audit</button>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+                <div>
+                    <h2>Lab 01: The Audit Haystack</h2>
+                    <p>Experience how AI parses 500 lines of chaotic logs to find critical compliance violations.</p>
+                </div>
+                <div style="text-align: right;">
+                    <button class="lab-btn" id="gen-btn" onclick="generateLogs()">1. Generate Logs</button>
+                    <button id="run-audit-btn" class="lab-btn" style="display:none; margin-top: 10px;" onclick="simulateAudit()">2. Run AI Audit</button>
+                </div>
             </div>
-
-            <div id="log-terminal" class="terminal-window">_ Awaiting system input...</div>
+            
+            <div id="log-terminal" class="terminal-window">_ System ready. Awaiting log generation...</div>
 
             <div id="report-output" class="audit-report">
-                <h3>🛡️ Generated Audit Report</h3>
+                <h3 style="margin-top: 0;">Automated Compliance Analysis</h3>
+                <p><em>Verified via the <strong>SOC2 AI Governance Engine</strong>. Standard: NIST 800-53.</em></p>
                 <div id="report-text"></div>
-                <button class="lab-btn" style="margin-top:1rem; font-size: 0.8rem;" onclick="location.reload()">Reset Lab</button>
+                <div style="margin-top: 2rem;">
+                    <button class="lab-btn" style="font-size: 0.8rem;" onclick="location.reload()">Reset Lab</button>
+                </div>
             </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2025 | Part of the <a href="index.html">Main Portfolio</a></p>
+        <p>&copy; 2025 | <a href="index.html">Back to Portfolio</a> | Built with Integrity</p>
     </footer>
 
     <script>
         const terminal = document.getElementById('log-terminal');
         const auditBtn = document.getElementById('run-audit-btn');
+        const genBtn = document.getElementById('gen-btn');
         const reportDiv = document.getElementById('report-output');
-
-        function scrollToLab() {
-            document.getElementById('active-lab').scrollIntoView({ behavior: 'smooth' });
-        }
 
         function generateLogs() {
             terminal.innerHTML = "Initializing Log Stream...<br>";
             let logs = "";
+            
+            const targetHigh = Math.floor(Math.random() * 500) + 1;
+            const targetMed = Math.floor(Math.random() * 500) + 1;
+            const targetLow = Math.floor(Math.random() * 500) + 1;
+            
+            const components = ["AUTH_SVC", "DB_CORE", "NET_WRAPPER", "NODE_01", "K8S_MGR", "WORKER_POOL"];
+            const infoEvents = ["Heartbeat check - Latency: 12ms", "Garbage collection executed", "Connection pool synchronized"];
+            const warnEvents = ["High memory pressure", "Slow query detected", "Redundant worker node restarted"];
+
             for (let i = 1; i <= 500; i++) {
                 const ts = new Date().toISOString();
-                let type = "INFO";
-                let msg = "Heartbeat check - System Healthy.";
+                const comp = components[Math.floor(Math.random() * components.length)];
+                let type = Math.random() > 0.8 ? "WARN" : "INFO";
+                let msg = type === "INFO" 
+                    ? infoEvents[Math.floor(Math.random() * infoEvents.length)]
+                    : warnEvents[Math.floor(Math.random() * warnEvents.length)];
+
+                if (i === targetHigh) {
+                    type = "CRITICAL";
+                    msg = "LOG_INJECTION_DETECTED: user_input='admin'; password='123456_admin_token'; -- DROP TABLE users;";
+                } else if (i === targetMed) {
+                    type = "ERROR";
+                    msg = "UNAUTHORIZED_ACCESS_ATTEMPT: POST /api/v1/admin/settings from IP 10.0.4.122";
+                } else if (i === targetLow) {
+                    type = "WARN";
+                    msg = "DEPRECATED_TLS_VERSION: Inbound connection using TLS 1.0 from legacy client.";
+                }
                 
-                if (i === 150) { type = "ERROR"; msg = "Unauthorized Access attempt at /api/v1/admin"; }
-                if (i === 412) { type = "CRITICAL"; msg = "Password reset failed - Key: password=123456_admin_token"; }
-                
-                logs += `[${ts}] ${type}: ${msg} (PID: ${Math.floor(Math.random()*999)})<br>`;
+                logs += `[${ts}] ${type} [${comp}]: ${msg}<br>`;
             }
+
             terminal.innerHTML = logs;
             terminal.scrollTop = terminal.scrollHeight;
             auditBtn.style.display = "block";
         }
 
         function simulateAudit() {
-            auditBtn.innerText = "Triaging Logs (Masking PII)...";
+            terminal.style.display = "none";
+            auditBtn.style.display = "none";
+            genBtn.style.display = "none";
             
-            setTimeout(() => {
-                reportDiv.style.display = "block";
-                document.getElementById('report-text').innerHTML = `
-                    <h4>1. Executive Summary</h4>
-                    <p>The system shows a stable baseline but contains two high-risk security anomalies requiring immediate remediation.</p>
-                    
-                    <h4>2. Detailed Findings (SOC2/NIST Mappings)</h4>
-                    <p><strong>Control ID:</strong> SOC2 CC6.1 / NIST AC-2</p>
-                    <p><strong>Event:</strong> Unauthorized API Access Attempt</p>
-                    <p><strong>Details:</strong> Triage layer identified an unauthorized call to administrative endpoints at line 150.</p>
-                    <hr>
-                    <p><strong>Control ID:</strong> SOC2 CC6.3 / NIST IA-2</p>
-                    <p><strong>Event:</strong> PII Exfiltration Risk</p>
-                    <p><strong>Details:</strong> Line 412 contained a raw password string. <em>Note: Our Triage Layer successfully masked this before analysis to maintain SOC2 Privacy compliance.</em></p>
-                `;
-                reportDiv.scrollIntoView({ behavior: 'smooth' });
-                auditBtn.innerText = "Audit Complete";
-            }, 2000);
+            reportDiv.style.display = "block";
+            document.getElementById('report-text').innerHTML = `
+                <h4>Executive Summary</h4>
+                <p>The AI Auditor processed the stream and identified high-risk security anomalies. While operational logs remain within normal parameters, active injection attempts require immediate remediation.</p>
+                
+                <h4>Findings Summary</h4>
+                <p><strong>High:</strong> 1 | <strong>Medium:</strong> 1 | <strong>Low:</strong> 1</p>
+                
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1.5rem; border-left: 4px solid #ff4b2b; padding-left: 15px;">
+                        <strong>Priority:</strong> HIGH<br>
+                        <strong>Control ID:</strong> SOC2 CC6.3 / NIST IA-2<br>
+                        <strong>Event:</strong> SQL Injection & PII Exfiltration<br>
+                        <strong>Remediation:</strong> Triage Layer masked raw credentials. Implement parameterized queries immediately.
+                    </li>
+                    <li style="margin-bottom: 1.5rem; border-left: 4px solid #ffcc00; padding-left: 15px;">
+                        <strong>Priority:</strong> MEDIUM<br>
+                        <strong>Control ID:</strong> SOC2 CC6.1 / NIST AC-2<br>
+                        <strong>Event:</strong> Unauthorized Admin Endpoint Access<br>
+                        <strong>Remediation:</strong> Enforce MFA for all /admin routes and rotate session tokens.
+                    </li>
+                    <li style="border-left: 4px solid #0070f3; padding-left: 15px;">
+                        <strong>Priority:</strong> LOW<br>
+                        <strong>Control ID:</strong> SOC2 CC7.1 / NIST SI-4<br>
+                        <strong>Event:</strong> Deprecated Protocol Usage (TLS 1.0)<br>
+                        <strong>Remediation:</strong> Update ingress controller to reject TLS versions below 1.2.
+                    </li>
+                </ul>
+            `;
+            reportDiv.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>

@@ -94,3 +94,66 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/* Lab Card Styling */
+.lab-card {
+    background: var(--dark-gray);
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.lab-card:hover {
+    border-color: var(--blue);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 112, 243, 0.15);
+}
+
+.lab-card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.4rem;
+    color: var(--white);
+}
+
+.lab-card p {
+    font-size: 0.95rem;
+    color: var(--silver);
+    margin-bottom: 2rem;
+}
+
+.lab-btn {
+    background: transparent;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.lab-btn:hover {
+    background: var(--blue);
+    color: var(--white);
+    box-shadow: 0 0 15px var(--blue);
+}
+
+/* Badge for Lab Status */
+.lab-status {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(0, 112, 243, 0.1);
+    color: var(--blue);
+    border: 1px solid rgba(0, 112, 243, 0.3);
+}
