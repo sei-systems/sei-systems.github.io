@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Labs | AI Security & Automation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <span class="badge">Experimental Environment</span>
+        <h1>Interactive <span class="highlight">Labs</span></h1>
+        <p>Real-world automation functions built for security and compliance.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="lab-grid">
+            <div class="lab-card">
+                <span class="lab-status">Active</span>
+                <h3>AI Log Auditor (Python Port)</h3>
+                <p>Simulate a 500-line system dump and watch the AI extract SOC2 control violations using real-time triage logic.</p>
+                <button class="lab-btn" onclick="scrollToLab()">Launch Lab</button>
+            </div>
+
+            <div class="lab-card" style="opacity: 0.6;">
+                <span class="lab-status" style="color:#666;">Coming Soon</span>
+                <h3>Auto-Redactor</h3>
+                <p>A PII-masking engine that identifies and redacts sensitive data from raw text strings before sending to LLMs.</p>
+                <button class="lab-btn" disabled>Locked</button>
+            </div>
+        </div>
+
+        <hr style="margin: 4rem 0; border: 0; border-top: 1px solid #222;">
+
+        <section id="active-lab">
+            <h2>Lab 01: <span class="highlight">The Audit Haystack</span></h2>
+            <p>Step 1: Generate logs. Step 2: Run the Auditor (based on <code>audit_ai.py</code>).</p>
+            
+            <div style="display: flex; gap: 1rem;">
+                <button class="lab-btn" onclick="generateLogs()">1. Generate 500 Logs</button>
+                <button id="run-audit-btn" class="lab-btn" style="display:none;" onclick="simulateAudit()">2. Run AI Audit</button>
+            </div>
+
+            <div id="log-terminal" class="terminal-window">_ Awaiting system input...</div>
+
+            <div id="report-output" class="audit-report">
+                <h3>🛡️ Generated Audit Report</h3>
+                <div id="report-text"></div>
+                <button class="lab-btn" style="margin-top:1rem; font-size: 0.8rem;" onclick="location.reload()">Reset Lab</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 | Part of the <a href="index.html">Main Portfolio</a></p>
+    </footer>
+
+    <script>
+        const terminal = document.getElementById('log-terminal');
+        const auditBtn = document.getElementById('run-audit-btn');
+        const reportDiv = document.getElementById('report-output');
+
+        function scrollToLab() {
+            document.getElementById('active-lab').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateLogs() {
+            terminal.innerHTML = "Initializing Log Stream...<br>";
+            let logs = "";
+            for (let i = 1; i <= 500; i++) {
+                const ts = new Date().toISOString();
+                let type = "INFO";
+                let msg = "Heartbeat check - System Healthy.";
+                
+                if (i === 150) { type = "ERROR"; msg = "Unauthorized Access attempt at /api/v1/admin"; }
+                if (i === 412) { type = "CRITICAL"; msg = "Password reset failed - Key: password=123456_admin_token"; }
+                
+                logs += `[${ts}] ${type}: ${msg} (PID: ${Math.floor(Math.random()*999)})<br>`;
+            }
+            terminal.innerHTML = logs;
+            terminal.scrollTop = terminal.scrollHeight;
+            auditBtn.style.display = "block";
+        }
+
+        function simulateAudit() {
+            auditBtn.innerText = "Triaging Logs (Masking PII)...";
+            
+            setTimeout(() => {
+                reportDiv.style.display = "block";
+                document.getElementById('report-text').innerHTML = `
+                    <h4>1. Executive Summary</h4>
+                    <p>The system shows a stable baseline but contains two high-risk security anomalies requiring immediate remediation.</p>
+                    
+                    <h4>2. Detailed Findings (SOC2/NIST Mappings)</h4>
+                    <p><strong>Control ID:</strong> SOC2 CC6.1 / NIST AC-2</p>
+                    <p><strong>Event:</strong> Unauthorized API Access Attempt</p>
+                    <p><strong>Details:</strong> Triage layer identified an unauthorized call to administrative endpoints at line 150.</p>
+                    <hr>
+                    <p><strong>Control ID:</strong> SOC2 CC6.3 / NIST IA-2</p>
+                    <p><strong>Event:</strong> PII Exfiltration Risk</p>
+                    <p><strong>Details:</strong> Line 412 contained a raw password string. <em>Note: Our Triage Layer successfully masked this before analysis to maintain SOC2 Privacy compliance.</em></p>
+                `;
+                reportDiv.scrollIntoView({ behavior: 'smooth' });
+                auditBtn.innerText = "Audit Complete";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
