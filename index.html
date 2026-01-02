@@ -18,11 +18,30 @@
             <span style="font-size: 0.8rem; font-weight: 800; color: #0070f3;">AI AGENT v1.0 [SECURE SESSION]</span>
             <span class="badge" style="margin: 0; padding: 2px 10px;">Status: Online</span>
         </div>
-        <iframe 
-            src="https://agent-interface100-sandbox.mxapps.io/" 
-            style="width: 100%; height: calc(100% - 40px); border: none;"
-            title="SEI Systems AI Agent">
-        </iframe>
+        <div style="text-align: center; margin: 3rem 0;">
+    <button onclick="launchAgent()" class="sei-btn-primary">
+        INTERACT WITH AI AGENT
+    </button>
+</div>
+
+<script>
+function launchAgent() {
+    // The path matches the URL attribute you set in Mendix
+    const agentUrl = "https://your-app-name.mendixcloud.com/p/chat";
+    
+    // Popup window dimensions
+    const width = 450;
+    const height = 650;
+    const left = (window.innerWidth / 2) - (width / 2);
+    const top = (window.innerHeight / 2) - (height / 2);
+
+    window.open(
+        agentUrl, 
+        "SEIAgentPopup", 
+        `width=${width},height=${height},top=${top},left=${left},status=no,menubar=no,toolbar=no`
+    );
+}
+</script>
     </div>
 </div>
     <div class="container">
