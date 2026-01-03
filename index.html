@@ -18,13 +18,17 @@
         </button>
         <script>
             function launchAgent() {
-                const url = "https://agent-interface100-sandbox.mxapps.io/p/chat";
-                const w = 450;
-                const h = 660;
-                const left = (screen.width / 2) - (w / 2);
-                const top = (screen.height / 2) - (h / 2);
-                window.open(url, "SEIAgent", `width=${w},height=${h},top=${top},left=${left},resizable=no,scrollbars=yes,status=no,location=no`);
-            }
+            const url = "https://https://agent-interface100-sandbox.mxapps.io/p/chat";
+            const w = 450;
+            const h = 700;
+            const left = (window.screen.width / 2) - (w / 2);
+            const top = (window.screen.height / 2) - (h / 2);
+            const popup = window.open(
+                url, 
+                "SEIAgent", 
+                `width=${w},height=${h},top=${top},left=${left},toolbar=no,menubar=no,scrollbars=no,location=yes,status=no`
+            );
+        }
         </script>
     </div>
     <div class="container">
