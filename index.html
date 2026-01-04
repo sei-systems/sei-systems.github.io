@@ -3,58 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI & Automation Specialist</title>
+    <title>SEI Systems | Automation & Systems Engineering</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <span class="badge">System Status: Secure</span>
-        <h1>AI <span class="highlight">&</span> Automation</h1>
-        <p>Architecting the next generation of intelligent workflows.</p>
+
+    <header class="sei-header">
+        <h1 class="sei-title">SEI <span class="sei-highlight">Systems</span></h1>
+        <p>Precision Automation & Integrated Systems Engineering</p>
+        
+        <div style="margin-top: 2.5rem;">
+            <button onclick="launchSentry()" class="sei-btn-action">
+                Initialize Sentry AI
+            </button>
+        </div>
     </header>
-    <div style="text-align: center; margin: 3rem 0;">
-        <button onclick="launchAgent()" class="lab-btn">
-        LAUNCH SECURE AGENT INTERFACE
-        </button>
-        <script>
-            function launchAgent() {
-            const url = "https://agent-interface100-sandbox.mxapps.io/p/chat";
-            const w = 650;
+
+    <main class="sei-container">
+        
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span class="sei-badge">Engineering Labs</span>
+            <h2 style="color: var(--white); margin-top: 1rem;">System Architecture Modules</h2>
+        </div>
+
+        <div class="sei-grid">
+            <div class="sei-card">
+                <span class="sei-badge">Module 01</span>
+                <h3>Workflow Automation</h3>
+                <p>Engineering autonomous bridges between legacy data and modern cloud environments.</p>
+                <a href="#" class="sei-btn-action" style="font-size: 0.8rem;">Review Specs</a>
+            </div>
+
+            <div class="sei-card">
+                <span class="sei-badge">Module 02</span>
+                <h3>System Integration</h3>
+                <p>Deploying robust REST/SOAP APIs to unify disparate software ecosystems.</p>
+                <a href="#" class="sei-btn-action" style="font-size: 0.8rem;">Review Specs</a>
+            </div>
+
+            <div class="sei-card">
+                <span class="sei-badge">Module 03</span>
+                <h3>AI Implementation</h3>
+                <p>Integrating intelligent agents into business logic to optimize decision-making loops.</p>
+                <a href="#" class="sei-btn-action" style="font-size: 0.8rem;">Review Specs</a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 4rem; border-top: 1px solid #222; font-size: 0.8rem;">
+        <p>&copy; 2026 SEI Systems. All Systems Operational.</p>
+    </footer>
+
+    <script>
+        function launchSentry() {
+            // Replace with your actual Mendix Cloud URL
+            const url = "https://your-app.mendixcloud.com/p/agent"; 
+            const w = 450;
             const h = 700;
-            const left = (window.screen.width / 2) - (w / 2);
-            const top = (window.screen.height / 2) - (h / 2);
-            const popup = window.open(
+            const left = (window.innerWidth / 2) - (w / 2);
+            const top = (window.innerHeight / 2) - (h / 2);
+
+            window.open(
                 url, 
-                "SEIAgent", 
-                `width=${w},height=${h},top=${top},left=${left},toolbar=no,menubar=no,scrollbars=no,location=yes,status=no`
+                "SentryAI", 
+                `width=${w},height=${h},top=${top},left=${left},toolbar=no,menubar=no,status=no,location=no`
             );
         }
-        </script>
-    </div>
-    <div class="container">
-        <div class="services-grid">
-            <div class="card">
-                <h3>Custom AI Agents</h3>
-                <p>Deploying autonomous agents using LangChain and OpenAI to handle complex customer interactions.</p>
-            </div>
-            <div class="card">
-                <h3>API Orchestration</h3>
-                <p>Seamlessly connecting your tech stack with robust, error-handled automation logic.</p>
-            </div>
-            <div class="card">
-                <h3>SOC2-Ready Ops</h3>
-                <p>Ensuring every automated trigger leaves a secure audit trail for enterprise-grade compliance.</p>
-            </div>
-            <a href="labs.html" style="text-decoration: none; color: inherit;">
-                <div class="card">
-                    <h3>Interactive Labs</h3>
-                    <p>Functional code experiments in AI Security and Workflow Automation.</p>
-                </div>
-            </a>
-        </div>
-    </div>
-    <footer>
-        <p>&copy; 2025 | <a href="index.html">Home</a> | Built with Integrity</p>
-    </footer>
+    </script>
 </body>
 </html>
