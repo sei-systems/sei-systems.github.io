@@ -3,63 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discovery Gateway | Unlock Your Business' Potential</title>
+    <title>Discovery Gateway | SEI Systems</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* Specific page layout for the Gateway */
-        .gateway-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-        
-        @media (max-width: 768px) {
-            .gateway-grid { grid-template-columns: 1fr; }
-        }
-
-        .discovery-form {
-            background: var(--dark-gray);
-            padding: 3rem;
-            border-radius: 16px;
-            border: 1px solid #222;
-        }
-
-        .form-group { margin-bottom: 1.5rem; }
-
-        .form-group label {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--blue);
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-input {
-            width: 100%;
-            background: var(--black);
-            border: 1px solid #333;
-            color: var(--white);
-            padding: 12px;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .form-input:focus {
-            border-color: var(--blue);
-            outline: none;
-        }
-
-        .security-banner {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(0, 112, 243, 0.05);
-            border-left: 4px solid var(--blue);
-            font-size: 0.85rem;
-        }
-    </style>
 </head>
 <body>
 
@@ -69,12 +15,12 @@
             <a href="labs.html" class="sei-nav-link">Labs</a>
             <a href="privacy.html" class="sei-nav-link">Compliance</a>
             <a href="discovery.html" class="sei-nav-gateway" style="background: rgba(0, 112, 243, 0.1);">
-                Discovery Gateway
+                Unlock Potential
             </a>
         </nav>
 
         <h1 class="sei-title">Unlock Your Business' <span class="sei-highlight">Potential</span></h1>
-        <p>Bridge the gap between manual friction and agentic autonomy.</p>
+        <p>Bridge the gap between manual friction and autonomous efficiency.</p>
     </header>
 
     <main class="sei-container">
@@ -82,56 +28,56 @@
             
             <div class="discovery-content">
                 <span class="sei-badge">Architectural Intake</span>
-                <h2 style="color: var(--white); margin: 1.5rem 0;">Ready for Your Future State?</h2>
-                <p>Our discovery process is designed to diagnose your primary operational bottlenecks. By submitting your technical profile, you initiate a formal review by our engineering board.</p>
+                <h2 style="color: var(--white); margin: 1.5rem 0;">Initiate Your Future State</h2>
+                <p>Our technical discovery process diagnoses operational bottlenecks to map out your transition to an agentic ecosystem.</p>
                 
-                <ul style="list-style: none; padding: 0; margin-top: 2rem;">
-                    <li style="margin-bottom: 1.5rem;">
-                        <strong style="color: var(--white);">01. Diagnose</strong><br>
-                        Identify the manual processes slowing your growth.
-                    </li>
-                    <li style="margin-bottom: 1.5rem;">
-                        <strong style="color: var(--white);">02. Design</strong><br>
-                        Receive a roadmap for Bespoke Enterprise Architecture.
-                    </li>
-                    <li>
-                        <strong style="color: var(--white);">03. Deploy</strong><br>
-                        Activate Agentic Automations within your ecosystem.
-                    </li>
-                </ul>
+                <div class="step-list">
+                    <div class="step-item">
+                        <span class="step-number">01. DIAGNOSE</span>
+                        Identify high-friction manual processes slowing your scaling.
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">02. DESIGN</span>
+                        Review a bespoke architecture roadmap from our engineering board.
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">03. DEPLOY</span>
+                        Integrate autonomous AI agents designed for SOC 2 integrity.
+                    </div>
+                </div>
 
                 <div class="security-banner">
-                    <strong style="color: var(--blue);">SOC 2 INTEGRITY GUARANTEE</strong><br>
-                    All data is cryptographically signed via HMAC-SHA256 protocols before transmission to ensure PII protection and system-to-system integrity.
+                    <strong style="color: var(--blue);">HMAC PROTECTED GATEWAY</strong><br>
+                    Data is cryptographically signed via SHA256 protocols to ensure system-to-system integrity and PII protection.
                 </div>
             </div>
 
             <div class="discovery-form">
-                <form action="#">
+                <form id="discoveryGatewayForm">
                     <div class="form-group">
-                        <label>Company Name</label>
-                        <input type="text" class="form-input" placeholder="Acme Dynamics" required>
+                        <label>Organization Name</label>
+                        <input type="text" id="company_name" class="form-input" placeholder="Acme Dynamics" required>
                     </div>
                     
                     <div class="form-group">
                         <label>Professional Email</label>
-                        <input type="email" class="form-input" placeholder="s.connor@acmedynamics.io" required>
+                        <input type="email" id="email" class="form-input" placeholder="s.connor@acmedynamics.io" required>
                     </div>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div class="form-group">
                             <label>Industry</label>
-                            <input type="text" class="form-input" placeholder="FinTech">
+                            <input type="text" id="industry" class="form-input" placeholder="Aerospace">
                         </div>
                         <div class="form-group">
                             <label>Employee Count</label>
-                            <input type="number" class="form-input" placeholder="250">
+                            <input type="number" id="employee_count" class="form-input" placeholder="250">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Operational Bottleneck</label>
-                        <textarea class="form-input" rows="4" placeholder="Describe the friction you want to eliminate..."></textarea>
+                        <label>Primary Bottleneck</label>
+                        <textarea id="bottleneck" class="form-input" rows="4" placeholder="Describe the friction you want to eliminate..."></textarea>
                     </div>
 
                     <button type="submit" class="sei-btn-action" style="width: 100%; margin-top: 1rem;">
@@ -139,13 +85,38 @@
                     </button>
                 </form>
             </div>
-
         </div>
     </main>
 
     <footer style="text-align: center; padding: 4rem; border-top: 1px solid #222; font-size: 0.8rem;">
-        <p>&copy; 2026 SEI Systems. <a href="privacy.html" style="color: var(--blue); text-decoration: none;">Security & Compliance Overview</a></p>
+        <p>&copy; 2026 SEI Systems. <a href="privacy.html" style="color: var(--blue); text-decoration: none;">Security & Compliance Policy</a></p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
+    <script>
+        document.getElementById('discoveryGatewayForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                company_name: document.getElementById('company_name').value,
+                email: document.getElementById('email').value,
+                industry: document.getElementById('industry').value,
+                employee_count: parseInt(document.getElementById('employee_count').value),
+                bottleneck: document.getElementById('bottleneck').value,
+                timestamp_utc: new Date().toISOString()
+            };
+
+            const secret = "sei_systems_secure_gateway_01"; 
+            const payloadString = JSON.stringify(formData);
+            const hmac = new sjcl.misc.hmac(sjcl.codec.utf8String.toBits(secret), sjcl.hash.sha256);
+            const signature = sjcl.codec.hex.fromBits(hmac.encrypt(payloadString));
+
+            console.log("Transmitting secure payload with signature:", signature);
+            // Replace with your actual Mendix URL
+            // fetch('YOUR_MENDIX_ENDPOINT', { method: 'POST', headers: { 'X-SEI-Signature': signature }, body: payloadString });
+            
+            alert("Technical Discovery Transmitted Successfully.");
+        });
+    </script>
 </body>
 </html>

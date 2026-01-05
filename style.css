@@ -95,3 +95,122 @@ body {
     font-weight: 800;
     text-transform: uppercase;
 }
+
+/* --- New Navigation System --- */
+.sei-nav {
+    display: flex; 
+    justify-content: center; 
+    gap: 2.5rem; 
+    margin-bottom: 3rem; 
+    font-size: 0.85rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
+.sei-nav-link {
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.sei-nav-link:hover {
+    color: var(--blue);
+}
+
+.sei-nav-link.active {
+    color: var(--white);
+    border-bottom: 2px solid var(--blue);
+}
+
+/* Gateway Button Styling */
+.sei-nav-gateway {
+    color: var(--blue);
+    text-decoration: none;
+    border: 1px solid var(--blue);
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-top: -6px;
+    transition: all 0.3s ease;
+}
+
+.sei-nav-gateway:hover {
+    background: rgba(0, 112, 243, 0.1);
+    box-shadow: 0 0 10px rgba(0, 112, 243, 0.2);
+}
+
+/* --- Discovery Gateway Layout --- */
+.gateway-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .gateway-grid { grid-template-columns: 1fr; }
+}
+
+.discovery-form {
+    background: var(--dark-gray);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid #222;
+}
+
+.form-group { margin-bottom: 1.5rem; }
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.form-input {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid #333;
+    color: var(--white);
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: var(--blue);
+    outline: none;
+}
+
+.security-banner {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 112, 243, 0.05);
+    border-left: 4px solid var(--blue);
+    font-size: 0.85rem;
+    color: var(--silver);
+}
+
+.step-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.step-item {
+    margin-bottom: 1.5rem;
+}
+
+.step-number {
+    color: var(--white);
+    font-weight: 800;
+    display: block;
+    margin-bottom: 0.2rem;
+}
