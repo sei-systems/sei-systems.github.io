@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discovery Gateway | Unlock Your Business' Potential</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Specific page layout for the Gateway */
+        .gateway-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        @media (max-width: 768px) {
+            .gateway-grid { grid-template-columns: 1fr; }
+        }
+
+        .discovery-form {
+            background: var(--dark-gray);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid #222;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--blue);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--black);
+            border: 1px solid #333;
+            color: var(--white);
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus {
+            border-color: var(--blue);
+            outline: none;
+        }
+
+        .security-banner {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 112, 243, 0.05);
+            border-left: 4px solid var(--blue);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sei-header">
+        <nav class="sei-nav">
+            <a href="index.html" class="sei-nav-link">Home</a>
+            <a href="labs.html" class="sei-nav-link">Labs</a>
+            <a href="privacy.html" class="sei-nav-link">Compliance</a>
+            <a href="discovery.html" class="sei-nav-gateway" style="background: rgba(0, 112, 243, 0.1);">
+                Discovery Gateway
+            </a>
+        </nav>
+
+        <h1 class="sei-title">Unlock Your Business' <span class="sei-highlight">Potential</span></h1>
+        <p>Bridge the gap between manual friction and agentic autonomy.</p>
+    </header>
+
+    <main class="sei-container">
+        <div class="gateway-grid">
+            
+            <div class="discovery-content">
+                <span class="sei-badge">Architectural Intake</span>
+                <h2 style="color: var(--white); margin: 1.5rem 0;">Ready for Your Future State?</h2>
+                <p>Our discovery process is designed to diagnose your primary operational bottlenecks. By submitting your technical profile, you initiate a formal review by our engineering board.</p>
+                
+                <ul style="list-style: none; padding: 0; margin-top: 2rem;">
+                    <li style="margin-bottom: 1.5rem;">
+                        <strong style="color: var(--white);">01. Diagnose</strong><br>
+                        Identify the manual processes slowing your growth.
+                    </li>
+                    <li style="margin-bottom: 1.5rem;">
+                        <strong style="color: var(--white);">02. Design</strong><br>
+                        Receive a roadmap for Bespoke Enterprise Architecture.
+                    </li>
+                    <li>
+                        <strong style="color: var(--white);">03. Deploy</strong><br>
+                        Activate Agentic Automations within your ecosystem.
+                    </li>
+                </ul>
+
+                <div class="security-banner">
+                    <strong style="color: var(--blue);">SOC 2 INTEGRITY GUARANTEE</strong><br>
+                    All data is cryptographically signed via HMAC-SHA256 protocols before transmission to ensure PII protection and system-to-system integrity.
+                </div>
+            </div>
+
+            <div class="discovery-form">
+                <form action="#">
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" class="form-input" placeholder="Acme Dynamics" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Professional Email</label>
+                        <input type="email" class="form-input" placeholder="s.connor@acmedynamics.io" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label>Industry</label>
+                            <input type="text" class="form-input" placeholder="FinTech">
+                        </div>
+                        <div class="form-group">
+                            <label>Employee Count</label>
+                            <input type="number" class="form-input" placeholder="250">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Operational Bottleneck</label>
+                        <textarea class="form-input" rows="4" placeholder="Describe the friction you want to eliminate..."></textarea>
+                    </div>
+
+                    <button type="submit" class="sei-btn-action" style="width: 100%; margin-top: 1rem;">
+                        Request Architectural Roadmap
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 4rem; border-top: 1px solid #222; font-size: 0.8rem;">
+        <p>&copy; 2026 SEI Systems. <a href="privacy.html" style="color: var(--blue); text-decoration: none;">Security & Compliance Overview</a></p>
+    </footer>
+
+</body>
+</html>
