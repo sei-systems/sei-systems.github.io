@@ -141,7 +141,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 112, 243, 0.2);
 }
 
-/* --- Discovery Gateway Layout --- */
+/* --- DISCOVERY GATEWAY SYSTEM --- */
+
 .gateway-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -150,8 +151,12 @@ body {
     margin-top: 2rem;
 }
 
+/* Responsive adjustment for mobile */
 @media (max-width: 768px) {
-    .gateway-grid { grid-template-columns: 1fr; }
+    .gateway-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2rem;
+    }
 }
 
 .discovery-form {
@@ -161,7 +166,10 @@ body {
     border: 1px solid #222;
 }
 
-.form-group { margin-bottom: 1.5rem; }
+.form-group { 
+    margin-bottom: 1.5rem; 
+    text-align: left; /* Ensures labels stay left-aligned */
+}
 
 .form-group label {
     display: block;
@@ -181,12 +189,14 @@ body {
     padding: 12px;
     border-radius: 8px;
     font-family: 'Inter', sans-serif;
+    box-sizing: border-box; /* Prevents input from overflowing container */
     transition: border-color 0.3s ease;
 }
 
 .form-input:focus {
     border-color: var(--blue);
     outline: none;
+    box-shadow: 0 0 10px rgba(0, 112, 243, 0.1);
 }
 
 .security-banner {
@@ -196,12 +206,14 @@ body {
     border-left: 4px solid var(--blue);
     font-size: 0.85rem;
     color: var(--silver);
+    line-height: 1.4;
 }
 
 .step-list {
     list-style: none;
     padding: 0;
     margin-top: 2rem;
+    text-align: left;
 }
 
 .step-item {
