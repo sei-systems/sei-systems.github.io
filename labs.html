@@ -3,127 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Labs | AI Security & Automation</title>
+    <title>Interactive Labs | SEI Systems</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .terminal-window {
+            background: #050505;
+            color: #00ff41; /* Classic Matrix/Security Green */
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #222;
+            height: 300px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+        .audit-report { display: none; }
+    </style>
 </head>
 <body>
-
-    <header>
-        <span class="badge">Live Technical Demonstration</span>
-        <h1>Interactive <span class="highlight">Labs</span></h1>
-        <p>A hands-on environment showcasing SOC2-compliant AI audit automation.</p>
+    <header class="sei-header">
+        <nav class="sei-nav">
+            <a href="index.html" class="sei-nav-link">Home</a>
+            <a href="labs.html" class="sei-nav-link active">Labs</a>
+            <a href="privacy.html" class="sei-nav-link">Compliance</a>
+            <a href="discovery.html" class="sei-nav-link">Unlock Potential</a>
+        </nav>
+        <h1 class="sei-title">Security <span class="sei-highlight">Labs</span></h1>
+        <p>Live demonstrations of SOC 2-compliant AI governance.</p>
     </header>
 
-    <div class="container">
-        <section id="active-lab">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+    <main class="sei-container">
+        <div class="sei-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <h2>Lab 01: The Audit Haystack</h2>
-                    <p>Experience how AI parses 500 lines of chaotic logs to find critical compliance violations.</p>
+                    <span class="sei-badge">Lab 01</span>
+                    <h2 style="color: var(--white);">The Audit Haystack</h2>
                 </div>
-                <div style="text-align: right;">
-                    <button class="lab-btn" id="gen-btn" onclick="generateLogs()">1. Generate Logs</button>
-                    <button id="run-audit-btn" class="lab-btn" style="display:none; margin-top: 10px;" onclick="simulateAudit()">2. Run AI Audit</button>
+                <div>
+                    <button class="sei-btn-action" id="gen-btn" onclick="generateLogs()">Generate Logs</button>
                 </div>
             </div>
-
-            <div id="log-terminal" class="terminal-window">Ready to see some magic? Generate some logs and lets go!</div>
+            
+            <div id="log-terminal" class="terminal-window">System Ready. Awaiting log generation...</div>
+            
+            <div id="audit-actions" style="margin-top: 1rem; display:none;">
+                <button class="sei-btn-action" onclick="simulateAudit()">Run AI Audit Analysis</button>
+            </div>
 
             <div id="report-output" class="audit-report">
-                <h3 style="margin-top: 0;">Automated Compliance Analysis</h3>
-                <p><em>Verified via the <strong>SOC2 AI Governance Engine</strong>. Standard: NIST 800-53.</em></p>
-                <div id="report-text"></div>
-                <div style="margin-top: 2rem;">
-                    <button class="lab-btn" style="font-size: 0.8rem;" onclick="location.reload()">Reset Lab</button>
                 </div>
-            </div>
-        </section>
-    </div>
+        </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2025 | <a href="index.html">Home</a> | Built with Integrity</p>
+    <footer style="text-align: center; padding: 4rem; border-top: 1px solid #222; font-size: 0.8rem;">
+        <p>&copy; 2026 SEI Systems. All Systems Operational.</p>
     </footer>
 
     <script>
-        const terminal = document.getElementById('log-terminal');
-        const auditBtn = document.getElementById('run-audit-btn');
-        const genBtn = document.getElementById('gen-btn');
-        const reportDiv = document.getElementById('report-output');
-
-        function generateLogs() {
-            terminal.innerHTML = "Initializing Log Stream...<br>";
-            let logs = "";
-            
-            const targetHigh = Math.floor(Math.random() * 500) + 1;
-            const targetMed = Math.floor(Math.random() * 500) + 1;
-            const targetLow = Math.floor(Math.random() * 500) + 1;
-            
-            const components = ["AUTH_SVC", "DB_CORE", "NET_WRAPPER", "NODE_01", "K8S_MGR", "WORKER_POOL"];
-            const infoEvents = ["Heartbeat check - Latency: 12ms", "Garbage collection executed", "Connection pool synchronized"];
-            const warnEvents = ["High memory pressure", "Slow query detected", "Redundant worker node restarted"];
-
-            for (let i = 1; i <= 500; i++) {
-                const ts = new Date().toISOString();
-                const comp = components[Math.floor(Math.random() * components.length)];
-                let type = Math.random() > 0.8 ? "WARN" : "INFO";
-                let msg = type === "INFO" 
-                    ? infoEvents[Math.floor(Math.random() * infoEvents.length)]
-                    : warnEvents[Math.floor(Math.random() * warnEvents.length)];
-
-                if (i === targetHigh) {
-                    type = "CRITICAL";
-                    msg = "LOG_INJECTION_DETECTED: user_input='admin'; password='123456_admin_token'; -- DROP TABLE users;";
-                } else if (i === targetMed) {
-                    type = "ERROR";
-                    msg = "UNAUTHORIZED_ACCESS_ATTEMPT: POST /api/v1/admin/settings from IP 10.0.4.122";
-                } else if (i === targetLow) {
-                    type = "WARN";
-                    msg = "DEPRECATED_TLS_VERSION: Inbound connection using TLS 1.0 from legacy client.";
-                }
-                
-                logs += `[${ts}] ${type} [${comp}]: ${msg}<br>`;
-            }
-
-            terminal.innerHTML = logs;
-            terminal.scrollTop = terminal.scrollHeight;
-            auditBtn.style.display = "block";
-        }
-
+        // Use your existing generateLogs() and simulateAudit() functions here.
+        // I recommend adding a "loading" state to simulate the AI "thinking"
         function simulateAudit() {
-            terminal.style.display = "none";
-            auditBtn.style.display = "none";
-            genBtn.style.display = "none";
+            const terminal = document.getElementById('log-terminal');
+            terminal.innerHTML += "<br>[SYSTEM]: AI Agent Sentry-Alpha initializing scan...";
             
-            reportDiv.style.display = "block";
-            document.getElementById('report-text').innerHTML = `
-                <h4>Executive Summary</h4>
-                <p>The AI Auditor processed the stream and identified high-risk security anomalies. While operational logs remain within normal parameters, active injection attempts require immediate remediation.</p>
-                
-                <h4>Findings Summary</h4>
-                <p><strong>High:</strong> 1 | <strong>Medium:</strong> 1 | <strong>Low:</strong> 1</p>
-                
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 1.5rem; border-left: 4px solid #ff4b2b; padding-left: 15px;">
-                        <strong>Priority:</strong> HIGH<br>
-                        <strong>Control ID:</strong> SOC2 CC6.3 / NIST IA-2<br>
-                        <strong>Event:</strong> SQL Injection & PII Exfiltration<br>
-                        <strong>Remediation:</strong> Triage Layer masked raw credentials. Implement parameterized queries immediately.
-                    </li>
-                    <li style="margin-bottom: 1.5rem; border-left: 4px solid #ffcc00; padding-left: 15px;">
-                        <strong>Priority:</strong> MEDIUM<br>
-                        <strong>Control ID:</strong> SOC2 CC6.1 / NIST AC-2<br>
-                        <strong>Event:</strong> Unauthorized Admin Endpoint Access<br>
-                        <strong>Remediation:</strong> Enforce MFA for all /admin routes and rotate session tokens.
-                    </li>
-                    <li style="border-left: 4px solid #0070f3; padding-left: 15px;">
-                        <strong>Priority:</strong> LOW<br>
-                        <strong>Control ID:</strong> SOC2 CC7.1 / NIST SI-4<br>
-                        <strong>Event:</strong> Deprecated Protocol Usage (TLS 1.0)<br>
-                        <strong>Remediation:</strong> Update ingress controller to reject TLS versions below 1.2.
-                    </li>
-                </ul>
-            `;
-            reportDiv.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                document.getElementById('audit-actions').style.display = 'none';
+                document.getElementById('report-output').style.display = 'block';
+                document.getElementById('report-output').innerHTML = `
+                    <div class="security-banner" style="border-color: var(--blue);">
+                        <h3 style="color: var(--white); margin-top: 0;">Automated Audit Report</h3>
+                        <p>Sentry AI has identified 3 anomalies against SOC 2 CC6.1 controls.</p>
+                        <button class="sei-btn-action" style="font-size: 0.7rem;" onclick="location.reload()">Reset Lab</button>
+                    </div>
+                `;
+            }, 1500);
         }
     </script>
 </body>

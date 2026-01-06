@@ -1,11 +1,22 @@
-/* SEI Systems - Unified Design System */
+/* * SEI SYSTEMS - CORE DESIGN SYSTEM 
+ * v2.0 - Refactored for SOC 2 Compliance & Unified Brand Integrity
+ * Standardized: Black, Blue, Silver Palette
+ */
+
 :root {
+    /* The SEI Professional Palette */
     --black: #0a0a0c;
     --blue: #0070f3;
     --silver: #c0c0c8;
     --dark-gray: #1a1a1e;
     --white: #ffffff;
+    
+    /* Functional Accents */
+    --glow: rgba(0, 112, 243, 0.4);
+    --border: #222;
 }
+
+/* --- BASE ARCHITECTURE --- */
 
 body {
     background-color: var(--black);
@@ -13,14 +24,16 @@ body {
     font-family: 'Inter', -apple-system, sans-serif;
     line-height: 1.6;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Unified Header Style */
+/* --- NAVIGATION & HEADER (The Bridge) --- */
+
 .sei-header {
     padding: 6rem 2rem;
     text-align: center;
     background: radial-gradient(circle at top, #001a33 0%, #0a0a0c 100%);
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border);
 }
 
 .sei-title {
@@ -32,14 +45,44 @@ body {
 
 .sei-highlight { 
     color: var(--blue);
-    text-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
+    text-shadow: 0 0 15px var(--glow);
 }
 
-/* Card & Grid System */
+.sei-nav {
+    display: flex; 
+    justify-content: center; 
+    gap: 2.5rem; 
+    margin-bottom: 3rem; 
+    font-size: 0.85rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
+.sei-nav-link {
+    color: var(--silver);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.sei-nav-link:hover {
+    color: var(--blue);
+}
+
+.sei-nav-link.active {
+    color: var(--white);
+    border-bottom: 2px solid var(--blue);
+}
+
+/* --- LAYOUT & GRID SYSTEM --- */
+
 .sei-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 2rem;
+    min-height: 70vh; /* Keeps layout stable across empty pages */
 }
 
 .sei-grid {
@@ -48,14 +91,20 @@ body {
     gap: 2rem;
 }
 
-/* This matches your Lab Card style exactly */
+/* --- COMPONENT LIBRARY (Cards & Badges) --- */
+
 .sei-card {
     background: var(--dark-gray);
     padding: 2.5rem;
     border-radius: 16px;
-    border: 1px solid #222;
+    border: 1px solid var(--border);
     position: relative;
     transition: all 0.4s ease;
+}
+
+.sei-card h3 {
+    margin-top: 1rem;
+    color: var(--white);
 }
 
 .sei-card:hover {
@@ -64,7 +113,18 @@ body {
     box-shadow: 0 10px 30px rgba(0, 112, 243, 0.15);
 }
 
-/* Standardized Button Style */
+.sei-badge {
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* --- ACTION ELEMENTS --- */
+
 .sei-btn-action {
     display: inline-block;
     background: transparent;
@@ -85,90 +145,25 @@ body {
     box-shadow: 0 0 15px var(--blue);
 }
 
-/* Badge System */
-.sei-badge {
-    border: 1px solid var(--blue);
-    color: var(--blue);
-    padding: 4px 12px;
-    border-radius: 30px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-/* --- New Navigation System --- */
-.sei-nav {
-    display: flex; 
-    justify-content: center; 
-    gap: 2.5rem; 
-    margin-bottom: 3rem; 
-    font-size: 0.85rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-}
-
-.sei-nav-link {
-    color: var(--silver);
-    text-decoration: none;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-    padding-bottom: 4px;
-    border-bottom: 2px solid transparent;
-}
-
-.sei-nav-link:hover {
-    color: var(--blue);
-}
-
-.sei-nav-link.active {
-    color: var(--white);
-    border-bottom: 2px solid var(--blue);
-}
-
-/* Gateway Button Styling */
-.sei-nav-gateway {
-    color: var(--blue);
-    text-decoration: none;
-    border: 1px solid var(--blue);
-    padding: 6px 16px;
-    border-radius: 4px;
-    margin-top: -6px;
-    transition: all 0.3s ease;
-}
-
-.sei-nav-gateway:hover {
-    background: rgba(0, 112, 243, 0.1);
-    box-shadow: 0 0 10px rgba(0, 112, 243, 0.2);
-}
-
-/* --- DISCOVERY GATEWAY SYSTEM --- */
+/* --- FORM & DATA INTAKE (HMAC Gateway) --- */
 
 .gateway-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: start;
-    margin-top: 2rem;
-}
-
-/* Responsive adjustment for mobile */
-@media (max-width: 768px) {
-    .gateway-grid { 
-        grid-template-columns: 1fr; 
-        gap: 2rem;
-    }
 }
 
 .discovery-form {
     background: var(--dark-gray);
     padding: 3rem;
     border-radius: 16px;
-    border: 1px solid #222;
+    border: 1px solid var(--border);
 }
 
 .form-group { 
     margin-bottom: 1.5rem; 
-    text-align: left; /* Ensures labels stay left-aligned */
+    text-align: left;
 }
 
 .form-group label {
@@ -178,7 +173,6 @@ body {
     color: var(--blue);
     font-weight: 800;
     margin-bottom: 0.5rem;
-    letter-spacing: 1px;
 }
 
 .form-input {
@@ -188,15 +182,7 @@ body {
     color: var(--white);
     padding: 12px;
     border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    box-sizing: border-box; /* Prevents input from overflowing container */
-    transition: border-color 0.3s ease;
-}
-
-.form-input:focus {
-    border-color: var(--blue);
-    outline: none;
-    box-shadow: 0 0 10px rgba(0, 112, 243, 0.1);
+    box-sizing: border-box;
 }
 
 .security-banner {
@@ -206,23 +192,40 @@ body {
     border-left: 4px solid var(--blue);
     font-size: 0.85rem;
     color: var(--silver);
-    line-height: 1.4;
 }
 
-.step-list {
-    list-style: none;
-    padding: 0;
+/* --- INTERACTIVE LABS (Audit Simulation) --- */
+
+.terminal-window {
+    background: #050505;
+    color: #00ff41; /* Audit Green */
+    font-family: 'Courier New', monospace;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    height: 300px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+.audit-report {
+    display: none;
     margin-top: 2rem;
-    text-align: left;
 }
 
-.step-item {
-    margin-bottom: 1.5rem;
+/* --- FOOTER & RESPONSIVE --- */
+
+footer {
+    text-align: center; 
+    padding: 4rem; 
+    border-top: 1px solid var(--border); 
+    font-size: 0.8rem;
 }
 
-.step-number {
-    color: var(--white);
-    font-weight: 800;
-    display: block;
-    margin-bottom: 0.2rem;
+@media (max-width: 768px) {
+    .gateway-grid, .sei-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .sei-title { font-size: 2.5rem; }
 }
