@@ -34,51 +34,94 @@
     </header>
 
     <main class="sei-container">
-        <div class="sei-card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <span class="sei-badge">Lab 01</span>
-                    <h2 style="color: var(--white);">The Audit Haystack</h2>
-                </div>
-                <div>
-                    <button class="sei-btn-action" id="gen-btn" onclick="generateLogs()">Generate Logs</button>
-                </div>
+    <div class="sei-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <span class="sei-badge">Lab 01: Audit Automation</span>
+                <h2 style="color: var(--white); margin-top: 10px;">The Audit Haystack</h2>
+                <p style="font-size: 0.9rem;">Simulating a 500-line log stream for real-time compliance detection.</p>
             </div>
-            
-            <div id="log-terminal" class="terminal-window">System Ready. Awaiting log generation...</div>
-            
-            <div id="audit-actions" style="margin-top: 1rem; display:none;">
-                <button class="sei-btn-action" onclick="simulateAudit()">Run AI Audit Analysis</button>
-            </div>
-
-            <div id="report-output" class="audit-report">
-                </div>
+            <button class="sei-btn-action" id="gen-btn" onclick="generateLogs()">1. Generate Logs</button>
         </div>
-    </main>
+        
+        <div id="log-terminal" class="terminal-window">System Standby. Awaiting command...</div>
+        
+        <div id="audit-actions" style="margin-top: 2rem; display:none; text-align: right;">
+            <button class="sei-btn-action" onclick="simulateAudit()">2. Run Sentry AI Audit</button>
+        </div>
 
-    <footer style="text-align: center; padding: 4rem; border-top: 1px solid #222; font-size: 0.8rem;">
-        <p>&copy; 2026 SEI Systems. All Systems Operational.</p>
-    </footer>
+        <div id="report-output" class="audit-report">
+            <div class="security-banner">
+                <h3 style="color: var(--white); margin-top: 0;">Automated Compliance Analysis</h3>
+                <p><em>Verified via the SEI Systems Governance Engine. Standard: SOC 2 CC7.1.</em></p>
+                <div id="report-text"></div>
+                <div style="margin-top: 2rem;">
+                    <button class="sei-btn-action" style="font-size: 0.8rem;" onclick="location.reload()">Reset Lab</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-    <script>
-        // Use your existing generateLogs() and simulateAudit() functions here.
-        // I recommend adding a "loading" state to simulate the AI "thinking"
-        function simulateAudit() {
-            const terminal = document.getElementById('log-terminal');
-            terminal.innerHTML += "<br>[SYSTEM]: AI Agent Sentry-Alpha initializing scan...";
+<script>
+    const terminal = document.getElementById('log-terminal');
+    const auditActions = document.getElementById('audit-actions');
+    const reportDiv = document.getElementById('report-output');
+
+    function generateLogs() {
+        terminal.innerHTML = "Initializing Secure Log Stream...<br>[OK] Establishing HMAC Handshake...<br>[OK] Receiving encrypted packets...<br><br>";
+        let logs = "";
+        
+        // Randomly insert a critical SOC 2 violation
+        const targetViolation = Math.floor(Math.random() * 400) + 50;
+        const components = ["AUTH_PROD", "DB_CORE", "GATEWAY_ALPHA", "SENTRY_NODE"];
+
+        for (let i = 1; i <= 500; i++) {
+            const ts = new Date().toISOString();
+            const comp = components[Math.floor(Math.random() * components.length)];
+            let type = "INFO";
+            let msg = "Heartbeat signal verified - Latency 14ms";
+
+            if (i === targetViolation) {
+                type = "CRITICAL";
+                msg = "UNAUTHORIZED_SQL_INJECTION: Attempt on 'prospectiveLead' table from IP 192.168.1.105";
+            } else if (i % 50 === 0) {
+                type = "WARN";
+                msg = "Resource usage spike: CPU > 85% on node 04";
+            }
             
-            setTimeout(() => {
-                document.getElementById('audit-actions').style.display = 'none';
-                document.getElementById('report-output').style.display = 'block';
-                document.getElementById('report-output').innerHTML = `
-                    <div class="security-banner" style="border-color: var(--blue);">
-                        <h3 style="color: var(--white); margin-top: 0;">Automated Audit Report</h3>
-                        <p>Sentry AI has identified 3 anomalies against SOC 2 CC6.1 controls.</p>
-                        <button class="sei-btn-action" style="font-size: 0.7rem;" onclick="location.reload()">Reset Lab</button>
-                    </div>
-                `;
-            }, 1500);
+            logs += `<span style="color: #666;">[${ts}]</span> <span style="color: ${type === 'CRITICAL' ? '#ff4b2b' : '#00ff41'}">${type}</span> [${comp}]: ${msg}<br>`;
         }
-    </script>
+
+        setTimeout(() => {
+            terminal.innerHTML += logs;
+            terminal.scrollTop = terminal.scrollHeight;
+            auditActions.style.display = "block";
+            document.getElementById('gen-btn').innerText = "Logs Generated";
+            document.getElementById('gen-btn').disabled = true;
+            document.getElementById('gen-btn').style.opacity = "0.5";
+        }, 500);
+    }
+
+    function simulateAudit() {
+        terminal.innerHTML += "<br><span style='color: #0070f3;'>[SENTRY]: Analyzing stream for TSC violations...</span>";
+        
+        setTimeout(() => {
+            terminal.style.display = "none";
+            auditActions.style.display = "none";
+            reportDiv.style.display = "block";
+            
+            document.getElementById('report-text').innerHTML = `
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1.5rem; border-left: 4px solid #ff4b2b; padding-left: 15px;">
+                        <strong>High Risk: CC6.1 Access Control</strong><br>
+                        SQL Injection attempt blocked by HMAC Gateway. Originating IP has been blacklisted.
+                    </li>
+                </ul>
+            `;
+            reportDiv.scrollIntoView({ behavior: 'smooth' });
+        }, 1500);
+    }
+</script>
 </body>
 </html>
