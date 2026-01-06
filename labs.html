@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Interactive Labs | SEI Systems</title>
         <link rel="stylesheet" href="style.css">
-        <style>
-            .terminal-window {
-                background: #050505;
-                color: #00ff41; /* Classic Matrix/Security Green */
-                font-family: 'Courier New', monospace;
-                padding: 20px;
-                border-radius: 8px;
-                border: 1px solid #222;
-                height: 300px;
-                overflow-y: auto;
-                font-size: 0.85rem;
-                margin-top: 1rem;
-            }
-            .audit-report { display: none; }
-        </style>
     </head>
     <body>
         <header class="sei-header">
@@ -34,152 +19,70 @@
         </header>
 
         <main class="sei-container">
-        <div class="sei-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <div>
-                    <span class="sei-badge">Lab 01: Audit Automation</span>
-                    <h2 style="color: var(--white); margin-top: 10px;">The Audit Haystack</h2>
-                    <p style="font-size: 0.9rem;">Simulating a 500-line log stream for real-time compliance detection.</p>
-                </div>
-                <button class="sei-btn-action" id="gen-btn" onclick="generateLogs()">1. Generate Logs</button>
-            </div>
-            
-            <div id="log-terminal" class="terminal-window">System Standby. Awaiting command...</div>
-            
-            <div id="audit-actions" style="margin-top: 2rem; display:none; text-align: right;">
-                <button class="sei-btn-action" onclick="simulateAudit()">2. Run Sentry AI Audit</button>
-            </div>
-
-            <div id="report-output" class="audit-report">
-                <div class="security-banner">
-                    <h3 style="color: var(--white); margin-top: 0;">Automated Compliance Analysis</h3>
-                    <p><em>Verified via the SEI Systems Governance Engine. Standard: SOC 2 CC7.1.</em></p>
-                    <div id="report-text"></div>
-                    <div style="margin-top: 2rem;">
-                        <button class="sei-btn-action" style="font-size: 0.8rem;" onclick="location.reload()">Reset Lab</button>
+            <div class="sei-card" style="margin-bottom: 3rem;">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <span class="sei-badge">Lab 01</span>
+                        <h3>The Audit Haystack</h3>
+                        <p>Testing AI pattern recognition against 500 lines of raw system logs.</p>
                     </div>
+                    <button class="sei-btn-action" id="gen-btn" onclick="generateLogs()">Generate Logs</button>
                 </div>
-            </div>
-        </div>
-        <div class="sei-card" style="margin-top: 3rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-            <div>
-                <span class="sei-badge">Lab 02: Process Velocity</span>
-                <h2 style="color: var(--white); margin-top: 10px;">The Latency Killer</h2>
-                <p style="font-size: 0.9rem;">Comparing manual triage vs. SEI Autonomous Agent processing.</p>
-            </div>
-            <button class="sei-btn-action" id="velocity-btn" onclick="startVelocityTest()">Run Benchmark</button>
-        </div>
-
-        <div id="velocity-container" style="display: none;">
-            <div class="form-group">
-                <label>Manual Human Triage (Traditional)</label>
-                <div style="width: 100%; background: #222; border-radius: 4px; height: 24px; overflow: hidden;">
-                    <div id="manual-bar" style="width: 0%; height: 100%; background: #666; transition: width 4s linear;"></div>
-                </div>
-                <small id="manual-status" style="color: #666;">Queueing...</small>
-            </div>
-
-            <div class="form-group" style="margin-top: 2rem;">
-                <label>SEI Sentry AI Agent (Autonomous)</label>
-                <div style="width: 100%; background: #222; border-radius: 4px; height: 24px; overflow: hidden;">
-                    <div id="ai-bar" style="width: 0%; height: 100%; background: var(--blue); transition: width 0.8s ease-out;"></div>
-                </div>
-                <small id="ai-status" style="color: var(--blue);">Ready to Initialize...</small>
-            </div>
-        </div>
-
-        <div id="velocity-report" class="security-banner" style="display: none; border-color: var(--blue);">
-            <strong>EFFICIENCY ANALYSIS:</strong><br>
-            The Autonomous Bridge reduced processing latency by <span style="color: var(--white);">82%</span>. 
-            System throughput increased from 5 units/min to 45 units/min without compromising SOC 2 integrity protocols.
-        </div>
-    </div>
-    </main>
-        <script>
-            const terminal = document.getElementById('log-terminal');
-            const auditActions = document.getElementById('audit-actions');
-            const reportDiv = document.getElementById('report-output');
-
-            function generateLogs() {
-                terminal.innerHTML = "Initializing Secure Log Stream...<br>[OK] Establishing HMAC Handshake...<br>[OK] Receiving encrypted packets...<br><br>";
-                let logs = "";
                 
-                // Randomly insert a critical SOC 2 violation
-                const targetViolation = Math.floor(Math.random() * 400) + 50;
-                const components = ["AUTH_PROD", "DB_CORE", "GATEWAY_ALPHA", "SENTRY_NODE"];
+                <div id="log-terminal" class="terminal-window">Awaiting initialization...</div>
+                
+                <div id="audit-actions" style="margin-top: 1.5rem; display:none; text-align: right;">
+                    <button class="sei-btn-action" onclick="simulateAudit()">Run Sentry Analysis</button>
+                </div>
+            </div>
 
-                for (let i = 1; i <= 500; i++) {
-                    const ts = new Date().toISOString();
-                    const comp = components[Math.floor(Math.random() * components.length)];
-                    let type = "INFO";
-                    let msg = "Heartbeat signal verified - Latency 14ms";
+            <div class="sei-card">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <span class="sei-badge">Lab 02</span>
+                        <h3>Process Velocity</h3>
+                        <p>Benchmark: Manual Triage vs. Sentry Autonomous Bridge.</p>
+                    </div>
+                    <button class="sei-btn-action" id="vel-btn" onclick="runVelocityTest()">Start Benchmark</button>
+                </div>
 
-                    if (i === targetViolation) {
-                        type = "CRITICAL";
-                        msg = "UNAUTHORIZED_SQL_INJECTION: Attempt on 'prospectiveLead' table from IP 192.168.1.105";
-                    } else if (i % 50 === 0) {
-                        type = "WARN";
-                        msg = "Resource usage spike: CPU > 85% on node 04";
-                    }
+                <div id="velocity-ui" style="margin-top: 2rem; display: none;">
+                    <label style="font-size: 0.7rem; color: var(--blue);">MANUAL TRIAGE (LINEAR)</label>
+                    <div class="velocity-track"><div id="bar-manual" class="velocity-bar bar-manual"></div></div>
                     
-                    logs += `<span style="color: #666;">[${ts}]</span> <span style="color: ${type === 'CRITICAL' ? '#ff4b2b' : '#00ff41'}">${type}</span> [${comp}]: ${msg}<br>`;
-                }
+                    <label style="font-size: 0.7rem; color: var(--blue); margin-top: 1rem; display: block;">SENTRY AI (PARALLEL)</label>
+                    <div class="velocity-track"><div id="bar-ai" class="velocity-bar bar-ai"></div></div>
+                </div>
+            </div>
+        </main>
 
-                setTimeout(() => {
-                    terminal.innerHTML += logs;
-                    terminal.scrollTop = terminal.scrollHeight;
-                    auditActions.style.display = "block";
-                    document.getElementById('gen-btn').innerText = "Logs Generated";
-                    document.getElementById('gen-btn').disabled = true;
-                    document.getElementById('gen-btn').style.opacity = "0.5";
-                }, 500);
+        <script>
+            // LAB 01 LOGIC
+            function generateLogs() {
+                const term = document.getElementById('log-terminal');
+                term.innerHTML = "Initializing stream...<br>";
+                let content = "";
+                for(let i=0; i<100; i++) {
+                    content += `[${new Date().toISOString()}] INFO: System heartbeat stable.<br>`;
+                }
+                content += `<span style="color: #ff4b2b;">[ALARM] UNAUTHORIZED ACCESS ATTEMPT - DB_PROD</span><br>`;
+                term.innerHTML += content;
+                document.getElementById('audit-actions').style.display = "block";
+                document.getElementById('gen-btn').innerText = "Logs Ready";
             }
 
             function simulateAudit() {
-                terminal.innerHTML += "<br><span style='color: #0070f3;'>[SENTRY]: Analyzing stream for TSC violations...</span>";
-                
-                setTimeout(() => {
-                    terminal.style.display = "none";
-                    auditActions.style.display = "none";
-                    reportDiv.style.display = "block";
-                    
-                    document.getElementById('report-text').innerHTML = `
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin-bottom: 1.5rem; border-left: 4px solid #ff4b2b; padding-left: 15px;">
-                                <strong>High Risk: CC6.1 Access Control</strong><br>
-                                SQL Injection attempt blocked by HMAC Gateway. Originating IP has been blacklisted.
-                            </li>
-                        </ul>
-                    `;
-                    reportDiv.scrollIntoView({ behavior: 'smooth' });
-                }, 1500);
+                const term = document.getElementById('log-terminal');
+                term.innerHTML += "<br>[SENTRY]: Pattern found. Isolating threat... Done.";
+                alert("Audit Complete: 1 Security Breach Identified and Masked.");
             }
-            function startVelocityTest() {
-                const container = document.getElementById('velocity-container');
-                const report = document.getElementById('velocity-report');
-                const btn = document.getElementById('velocity-btn');
-                
-                container.style.display = "block";
-                btn.disabled = true;
-                btn.style.opacity = "0.5";
 
-                // 1. Start AI Agent (High Velocity)
-                setTimeout(() => {
-                    document.getElementById('ai-bar').style.width = "100%";
-                    document.getElementById('ai-status').innerText = "Processing... Handshake Verified... Completed in 0.8s";
-                }, 100);
-
-                // 2. Start Manual Path (Slow Velocity)
-                setTimeout(() => {
-                    document.getElementById('manual-bar').style.width = "25%";
-                    document.getElementById('manual-status').innerText = "Human review required. Lead sitting in inbox... (Timeout Risk)";
-                }, 500);
-
-                // 3. Reveal ROI Analysis
-                setTimeout(() => {
-                    report.style.display = "block";
-                }, 2000);
+            // LAB 02 LOGIC
+            function runVelocityTest() {
+                document.getElementById('velocity-ui').style.display = "block";
+                setTimeout(() => { document.getElementById('bar-ai').style.width = "100%"; }, 100);
+                setTimeout(() => { document.getElementById('bar-manual').style.width = "15%"; }, 100);
+                document.getElementById('vel-btn').innerText = "Benchmark Live";
             }
         </script>
     </body>
