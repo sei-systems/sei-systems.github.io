@@ -23,18 +23,18 @@
             <div class="discovery-form">
                 <form id="discoveryGatewayForm">
                     <div class="form-group"><label>Contact Name</label><input type="text" id="contact_name" class="form-input" required></div>
-                    <div class="form-group"><label>Company Name</label><input type="text" id="company_name" class="form-input" required></div>
-                    <div class="form-group"><label>Company Size</label>
-                        <select id="employee_count" class="form-input">
-                            <option value="1-10">1-10 Employees</option>
-                            <option value="11-50">11-50 Employees</option>
-                            <option value="51-200">51-200 Employees</option>
-                            <option value="201+">201+ Employees</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>Primary Bottleneck</label><textarea id="bottleneck" class="form-input" rows="3"></textarea></div>
-                    <div class="form-group"><label>Current Tech Stack</label><input type="text" id="tech_stack" class="form-input" placeholder="e.g. Mendix, AWS, SAP"></div>
-                    <button type="submit" class="sei-btn-action" style="width: 100%;">Initialize Roadmap</button>
+                        <div class="form-group"><label>Company Name</label><input type="text" id="company_name" class="form-input" required></div>
+                        <div class="form-group">
+                            <label>Employee Count</label>
+                            <select id="employee_count" class="form-input">
+                                <option value="1-20">1-20 Employees</option>
+                                <option value="21-100">21-100 Employees</option>
+                                <option value="101+">101+ Employees</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>Tech Stack</label><input type="text" id="tech_stack" class="form-input" placeholder="e.g., Mendix, AWS"></div>
+                        <div class="form-group"><label>Primary Bottleneck</label><textarea id="bottleneck" class="form-input" rows="3"></textarea></div>
+                        <button type="submit" class="sei-btn-action" style="width: 100%;">Initialize Roadmap</button>
                 </form>
             </div>
         </div>
