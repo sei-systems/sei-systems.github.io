@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discovery Gateway | AI Automation Roadmap & Technical Intake</title>
-    <meta name="description" content="Request a bespoke architectural roadmap. Map your transition from manual friction to autonomous efficiency with our SOC 2 compliant discovery process.">
-    <link rel="canonical" href="https://www.seisystems.co/discovery.html" />
+    <title>Discovery Gateway | SEI Systems</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
 </head>
 <body>
     <header class="sei-header">
@@ -18,83 +16,55 @@
             <a href="discovery.html" class="sei-nav-link active">Unlock Potential</a>
         </nav>
         <h1 class="sei-title">Unlock <span class="sei-highlight">Potential</span></h1>
-        <p>Bridge the gap between manual friction and autonomous efficiency.</p>
     </header>
 
     <main class="sei-container">
         <div class="gateway-grid">
-            <div class="discovery-content">
-                <span class="sei-badge">Architectural Intake</span>
-                <h2 style="color: var(--white); margin: 1.5rem 0;">Initiate Your Future State</h2>
-                <div class="security-banner">
-                    <strong style="color: var(--blue);">HMAC PROTECTED GATEWAY</strong><br>
-                    Data is cryptographically signed via SHA256 to ensure system-to-system integrity (CC6.1).
-                </div>
-            </div>
-
             <div class="discovery-form">
                 <form id="discoveryGatewayForm">
-                    <div class="form-group">
-                        <label>Contact Person</label>
-                        <input type="text" id="contact_name" class="form-input" placeholder="Your Name" required>
+                    <div class="form-group"><label>Contact Name</label><input type="text" id="contact_name" class="form-input" required></div>
+                    <div class="form-group"><label>Company Name</label><input type="text" id="company_name" class="form-input" required></div>
+                    <div class="form-group"><label>Company Size</label>
+                        <select id="employee_count" class="form-input">
+                            <option value="1-10">1-10 Employees</option>
+                            <option value="11-50">11-50 Employees</option>
+                            <option value="51-200">51-200 Employees</option>
+                            <option value="201+">201+ Employees</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label>Professional Email</label>
-                        <input type="email" id="email" class="form-input" placeholder="email@company.io" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Organization Name</label>
-                        <input type="text" id="company_name" class="form-input" placeholder="Company Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Industry</label>
-                        <input type="text" id="industry" class="form-input" placeholder="e.g., Tech, Finance">
-                    </div>
-                    <div class="form-group">
-                        <label>Primary Bottleneck</label>
-                        <textarea id="bottleneck" class="form-input" rows="3" placeholder="What is slowing you down?"></textarea>
-                    </div>
-                    <button type="submit" class="sei-btn-action" style="width: 100%;">Request Roadmap</button>
+                    <div class="form-group"><label>Primary Bottleneck</label><textarea id="bottleneck" class="form-input" rows="3"></textarea></div>
+                    <div class="form-group"><label>Current Tech Stack</label><input type="text" id="tech_stack" class="form-input" placeholder="e.g. Mendix, AWS, SAP"></div>
+                    <button type="submit" class="sei-btn-action" style="width: 100%;">Initialize Roadmap</button>
                 </form>
             </div>
         </div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
     <script>
         document.getElementById('discoveryGatewayForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const secret = "sei_systems_secure_gateway_01"; 
-            
+            const secret = "sei_systems_secure_gateway_01";
             const fullPayload = {
                 source_system: "SENTRY-WEB-GATEWAY",
                 event_id: crypto.randomUUID(),
                 timestamp_utc: new Date().toISOString(),
                 contact_name: document.getElementById('contact_name').value,
-                contact_email: document.getElementById('email').value,
                 company_name: document.getElementById('company_name').value,
-                industry: document.getElementById('industry').value,
+                employee_count: document.getElementById('employee_count').value,
                 bottleneck: document.getElementById('bottleneck').value,
-                sentry_notes: "Initial intake from Discovery Gateway"
+                tech_stack: document.getElementById('tech_stack').value
             };
 
             const bodyString = JSON.stringify(fullPayload);
             const hmac = new sjcl.misc.hmac(sjcl.codec.utf8String.toBits(secret), sjcl.hash.sha256);
             const signature = sjcl.codec.hex.fromBits(hmac.encrypt(bodyString));
 
-            try {
-                const response = await fetch('https://crm315-sandbox.mxapps.io/rest/IncomingLead/v1/prospectiveLead', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'X-SEI-Signature': signature },
-                    body: bodyString
-                });
-                if (response.ok) {
-                    alert("Discovery Transmitted. Integrity Verified.");
-                    document.getElementById('discoveryGatewayForm').reset();
-                } else {
-                    alert("Handshake Failed. Integrity Check Error.");
-                }
-            } catch (error) { console.error(error); }
+            await fetch('https://crm315-sandbox.mxapps.io/rest/IncomingLead/v1/prospectiveLead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-SEI-Signature': signature },
+                body: bodyString
+            });
+            alert("Roadmap Initialized.");
         });
     </script>
 </body>

@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEI Systems | SOC 2 AI Automation & Systems Engineering</title>
-    <meta name="description" content="Precision AI automation and systems engineering. We build SOC 2 compliant autonomous workflows and Mendix-integrated AI agents for enterprise efficiency.">
-    <link rel="canonical" href="https://www.seisystems.co/index.html" />
+    <meta name="description" content="Precision AI automation and systems engineering. We build SOC 2 compliant autonomous workflows and Mendix-integrated AI agents.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
@@ -19,8 +18,10 @@
         </nav>
         <h1 class="sei-title">SEI <span class="sei-highlight">Systems</span></h1>
         <p>Precision AI Automation & Integrated Systems Engineering</p>
-        <div style="margin-top: 2.5rem;">
-            <button onclick="location.href='discovery.html'" class="sei-btn-action">Initialize Strategic Discovery</button>
+        
+        <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center;">
+            <button onclick="location.href='discovery.html'" class="sei-btn-action">Unlock Potential</button>
+            <button onclick="launchSentry()" class="sei-btn-action" style="background: transparent; border: 1px solid var(--blue);">Initialize Sentry AI</button>
         </div>
     </header>
 
@@ -30,17 +31,25 @@
                 <span class="sei-badge">SOC 2 Compliant</span>
                 <h3>Autonomous Workflows</h3>
                 <p>Engineering secure workflows that eliminate manual bottlenecks, utilizing custom logic to drive high-velocity business operations.</p>
+                <button onclick="launchSentry()" class="sei-btn-action" style="font-size: 0.8rem; margin-top: 1rem;">Request Specs</button>
             </div>
             <div class="sei-card">
-                <span class="sei-badge">Mendix Integration</span>
-                <h3>AI Agent Architecture</h3>
+                <span class="sei-badge">Architecture</span>
+                <h3>AI Agent Integration</h3>
                 <p>Deploying specialized AI agents that provide intelligent, context-aware interfaces for complex system management and user interaction.</p>
+                <button onclick="launchSentry()" class="sei-btn-action" style="font-size: 0.8rem; margin-top: 1rem;">Request Specs</button>
             </div>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 4rem; border-top: 1px solid #222; font-size: 0.8rem;">
-        <p>&copy; 2026 SEI Systems. All Systems Operational.</p>
-    </footer>
+    <script>
+        function launchSentry() {
+            const url = "https://agent-interface100-sandbox.mxapps.io/p/chat"; 
+            const w = 500; const h = 700;
+            const left = (window.innerWidth / 2) - (w / 2);
+            const top = (window.innerHeight / 2) - (h / 2);
+            window.open(url, "SentryAI", `width=${w},height=${h},top=${top},left=${left},toolbar=no,menubar=no`);
+        }
+    </script>
 </body>
 </html>
