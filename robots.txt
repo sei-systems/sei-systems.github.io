@@ -1,0 +1,16 @@
+User-agent: *
+# Allow indexing of brand pages
+Allow: /index.html
+Allow: /discovery.html
+Allow: /labs.html
+Allow: /privacy.html
+Allow: /style.css
+
+# SOC 2: Disallow crawling of sensitive directories
+Disallow: /tools/
+Disallow: /scripts/
+Disallow: /backend/
+Disallow: /mendix-internal/
+
+# Point to the sitemap we just created
+Sitemap: https://seisystems.co/sitemap.xml
