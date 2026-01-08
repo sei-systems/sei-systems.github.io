@@ -54,6 +54,10 @@
                             <input type="text" id="company_name" class="form-input" placeholder="Acme Dynamics" required>
                         </div>
                         <div class="form-group">
+                            <label>Contact Person</label>
+                            <input type="text" id="contact_name" class="form-input" placeholder="Sarah Connor" required>
+                        </div>
+                        <div class="form-group">
                             <label>Professional Email</label>
                             <input type="email" id="email" class="form-input" placeholder="s.connor@acmedynamics.io" required>
                         </div>
@@ -112,11 +116,15 @@
                 const fullPayload = {
                     source_system: "SENTRY-WEB-GATEWAY",
                     event_id: crypto.randomUUID(),
-                    timestamp_utc: new Date().toISOString(), // This provides the current time
+                    timestamp_utc: new Date().toISOString(),
+                    
+                    // Updated mapping including the new name field
+                    contact_name: document.getElementById('contact_name').value, 
                     company_name: document.getElementById('company_name').value,
                     industry: document.getElementById('industry').value || "Not Specified",
                     employee_count: parseInt(document.getElementById('employee_count').value) || 0,
                     contact_email: document.getElementById('email').value,
+                    
                     tech_stack_match: selectedStack, 
                     bottleneck: document.getElementById('bottleneck').value || "None provided",
                     sentry_notes: "Initial intake from Discovery Gateway"
