@@ -1,43 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Labs | AI Security & SOC 2 Audit Demos</title>
-    <meta name="description" content="Explore live technical demonstrations of AI-driven compliance auditing and process velocity benchmarking for SOC 2 systems.">
-    <link rel="canonical" href="https://www.seisystems.co/labs.html" />
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header class="sei-header">
-        <nav class="sei-nav">
-            <a href="index.html" class="sei-nav-link">Home</a>
-            <a href="labs.html" class="sei-nav-link active">Labs</a>
-            <a href="privacy.html" class="sei-nav-link">Compliance</a>
-            <a href="discovery.html" class="sei-nav-link">Unlock Potential</a>
-        </nav>
-        <h1 class="sei-title">Security <span class="sei-highlight">Labs</span></h1>
-        <p>Live demonstrations of SOC 2-compliant AI governance.</p>
-    </header>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Interactive Labs | SEI Systems</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header class="sei-header">
+            <nav class="sei-nav">
+                <a href="index.html" class="sei-nav-link">Home</a>
+                <a href="labs.html" class="sei-nav-link active">Labs</a>
+                <a href="privacy.html" class="sei-nav-link">Compliance</a>
+                <a href="discovery.html" class="sei-nav-link">Unlock Potential</a>
+            </nav>
+            <h1 class="sei-title">Security <span class="sei-highlight">Labs</span></h1>
+            <p>Live demonstrations of SOC 2-compliant AI governance.</p>
+        </header>
 
-    <main class="sei-container">
-        <div class="sei-card">
-            <h3>Lab 01: The Audit Haystack</h3>
-            <p>Testing AI pattern recognition against 500 lines of raw system logs.</p>
-            <button class="sei-btn-action" onclick="generateLogs()">Generate Logs</button>
-            <div id="log-terminal" class="terminal-window" style="margin-top:1rem;">Ready...</div>
-        </div>
-    </main>
+        <main class="sei-container">
+            <div class="sei-card" style="margin-bottom: 3rem;">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <span class="sei-badge">Lab 01</span>
+                        <h3>The Audit Haystack</h3>
+                        <p>Testing AI pattern recognition against 500 lines of raw system logs.</p>
+                    </div>
+                    <button class="sei-btn-action" id="gen-btn" onclick="generateLogs()">Generate Logs</button>
+                </div>
+                
+                <div id="log-terminal" class="terminal-window">Awaiting initialization...</div>
+                
+                <div id="audit-actions" style="margin-top: 1.5rem; display:none; text-align: right;">
+                    <button class="sei-btn-action" onclick="simulateAudit()">Run Sentry Analysis</button>
+                </div>
+            </div>
 
-    <script>
-        function generateLogs() {
-            const term = document.getElementById('log-terminal');
-            term.innerHTML = "Initializing stream...<br>";
-            setTimeout(() => {
-                term.innerHTML += `[${new Date().toISOString()}] <span style="color: #ff4b2b;">CRITICAL: Unauthorized Access DB_PROD</span><br>`;
-                term.innerHTML += `[${new Date().toISOString()}] INFO: Sentry AI isolated threat.`;
-            }, 500);
-        }
-    </script>
-</body>
+            <div class="sei-card">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <span class="sei-badge">Lab 02</span>
+                        <h3>Process Velocity</h3>
+                        <p>Benchmark: Manual Triage vs. Sentry Autonomous Bridge.</p>
+                    </div>
+                    <button class="sei-btn-action" id="vel-btn" onclick="runVelocityTest()">Start Benchmark</button>
+                </div>
+
+                <div id="velocity-ui" style="margin-top: 2rem; display: none;">
+                    <label style="font-size: 0.7rem; color: var(--blue);">MANUAL TRIAGE (LINEAR)</label>
+                    <div class="velocity-track"><div id="bar-manual" class="velocity-bar bar-manual"></div></div>
+                    
+                    <label style="font-size: 0.7rem; color: var(--blue); margin-top: 1rem; display: block;">SENTRY AI (PARALLEL)</label>
+                    <div class="velocity-track"><div id="bar-ai" class="velocity-bar bar-ai"></div></div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            // LAB 01 LOGIC
+            function generateLogs() {
+                const term = document.getElementById('log-terminal');
+                term.innerHTML = "Initializing stream...<br>";
+                let content = "";
+                for(let i=0; i<100; i++) {
+                    content += `[${new Date().toISOString()}] INFO: System heartbeat stable.<br>`;
+                }
+                content += `<span style="color: #ff4b2b;">[ALARM] UNAUTHORIZED ACCESS ATTEMPT - DB_PROD</span><br>`;
+                term.innerHTML += content;
+                document.getElementById('audit-actions').style.display = "block";
+                document.getElementById('gen-btn').innerText = "Logs Ready";
+            }
+
+            function simulateAudit() {
+                const term = document.getElementById('log-terminal');
+                term.innerHTML += "<br>[SENTRY]: Pattern found. Isolating threat... Done.";
+                alert("Audit Complete: 1 Security Breach Identified and Masked.");
+            }
+
+            // LAB 02 LOGIC
+            function runVelocityTest() {
+                document.getElementById('velocity-ui').style.display = "block";
+                setTimeout(() => { document.getElementById('bar-ai').style.width = "100%"; }, 100);
+                setTimeout(() => { document.getElementById('bar-manual').style.width = "15%"; }, 100);
+                document.getElementById('vel-btn').innerText = "Benchmark Live";
+            }
+        </script>
+    </body>
 </html>

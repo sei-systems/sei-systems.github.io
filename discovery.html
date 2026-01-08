@@ -1,71 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discovery Gateway | SEI Systems</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
-</head>
-<body>
-    <header class="sei-header">
-        <nav class="sei-nav">
-            <a href="index.html" class="sei-nav-link">Home</a>
-            <a href="labs.html" class="sei-nav-link">Labs</a>
-            <a href="privacy.html" class="sei-nav-link">Compliance</a>
-            <a href="discovery.html" class="sei-nav-link active">Unlock Potential</a>
-        </nav>
-        <h1 class="sei-title">Unlock <span class="sei-highlight">Potential</span></h1>
-    </header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Discovery Gateway | SEI Systems</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="sei-header">
+            <nav class="sei-nav">
+                <a href="index.html" class="sei-nav-link">Home</a>
+                <a href="labs.html" class="sei-nav-link">Labs</a>
+                <a href="privacy.html" class="sei-nav-link">Compliance</a>
+                <a href="discovery.html" class="sei-nav-link active">Unlock Potential</a>
+            </nav>
+            <h1 class="sei-title">Unlock Your Business's <span class="sei-highlight">Potential</span></h1>
+            <p>Bridge the gap between manual friction and autonomous efficiency.</p>
+        </header>
 
-    <main class="sei-container">
-        <div class="gateway-grid">
-            <div class="discovery-form">
-                <form id="discoveryGatewayForm">
-                    <div class="form-group"><label>Contact Name</label><input type="text" id="contact_name" class="form-input" required></div>
-                        <div class="form-group"><label>Company Name</label><input type="text" id="company_name" class="form-input" required></div>
-                        <div class="form-group">
-                            <label>Employee Count</label>
-                            <select id="employee_count" class="form-input">
-                                <option value="1-20">1-20 Employees</option>
-                                <option value="21-100">21-100 Employees</option>
-                                <option value="101+">101+ Employees</option>
-                            </select>
+        <main class="sei-container">
+            <div class="gateway-grid">  
+                <div class="discovery-content">
+                    <span class="sei-badge">Architectural Intake</span>
+                    <h2 style="color: var(--white); margin: 1.5rem 0;">Initiate Your Future State</h2>
+                    <p>Our technical discovery process diagnoses operational bottlenecks to map out your transition to an agentic ecosystem.</p>
+                    
+                    <div class="step-list">
+                        <div class="step-item">
+                            <span class="step-number">01. DIAGNOSE</span>
+                            Identify high-friction manual processes slowing your scaling.
                         </div>
-                        <div class="form-group"><label>Tech Stack</label><input type="text" id="tech_stack" class="form-input" placeholder="e.g., Mendix, AWS"></div>
-                        <div class="form-group"><label>Primary Bottleneck</label><textarea id="bottleneck" class="form-input" rows="3"></textarea></div>
-                        <button type="submit" class="sei-btn-action" style="width: 100%;">Initialize Roadmap</button>
-                </form>
+                        <div class="step-item">
+                            <span class="step-number">02. DESIGN</span>
+                            Review a bespoke architecture roadmap from our engineering board.
+                        </div>
+                        <div class="step-item">
+                            <span class="step-number">03. DEPLOY</span>
+                            Integrate autonomous AI agents designed for SOC 2 integrity.
+                        </div>
+                    </div>
+
+                    <div class="security-banner">
+                        <strong style="color: var(--blue);">HMAC PROTECTED GATEWAY</strong><br>
+                        Data is cryptographically signed via SHA256 protocols to ensure system-to-system integrity (CC6.1) and PII protection.
+                    </div>
+                </div>
+
+                <div class="discovery-form">
+                    <form id="discoveryGatewayForm">
+                        <div class="form-group">
+                            <label>Organization Name</label>
+                            <input type="text" id="company_name" class="form-input" placeholder="Acme Dynamics" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Person</label>
+                            <input type="text" id="contact_name" class="form-input" placeholder="Sarah Connor" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Professional Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="s.connor@acmedynamics.io" required>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label>Industry</label>
+                                <input type="text" id="industry" class="form-input" placeholder="Aerospace">
+                            </div>
+                            <div class="form-group">
+                                <label>Employee Count</label>
+                                <input type="number" id="employee_count" class="form-input" placeholder="250">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Primary Bottleneck</label>
+                            <textarea id="bottleneck" class="form-input" rows="4" placeholder="Describe the friction..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Current Tech Stack</label>
+                            <div class="tech-stack-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;">
+                                <label class="stack-chip"><input type="checkbox" name="tech" value="Mendix"> Mendix</label>
+                                <label class="stack-chip"><input type="checkbox" name="tech" value="React"> React</label>
+                                <label class="stack-chip"><input type="checkbox" name="tech" value="AWS"> AWS</label>
+                                <label class="stack-chip"><input type="checkbox" name="tech" value="Azure"> Azure</label>
+                                <label class="stack-chip"><input type="checkbox" name="tech" value="Python"> Python</label>
+                                <label class="stack-chip"><input type="checkbox" name="tech" value="Salesforce"> Salesforce</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="sei-btn-action" style="width: 100%; margin-top: 1rem;">
+                            Request Architectural Roadmap
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <script>
-        document.getElementById('discoveryGatewayForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const secret = "sei_systems_secure_gateway_01";
-            const fullPayload = {
-                source_system: "SENTRY-WEB-GATEWAY",
-                event_id: crypto.randomUUID(),
-                timestamp_utc: new Date().toISOString(),
-                contact_name: document.getElementById('contact_name').value,
-                company_name: document.getElementById('company_name').value,
-                employee_count: document.getElementById('employee_count').value,
-                bottleneck: document.getElementById('bottleneck').value,
-                tech_stack: document.getElementById('tech_stack').value
-            };
+        <footer style="text-align: center; padding: 4rem; border-top: 1px solid #222; font-size: 0.8rem;">
+            <p>&copy; 2026 SEI Systems. <a href="privacy.html" style="color: var(--blue); text-decoration: none;">Security & Compliance Policy</a></p>
+        </footer>
 
-            const bodyString = JSON.stringify(fullPayload);
-            const hmac = new sjcl.misc.hmac(sjcl.codec.utf8String.toBits(secret), sjcl.hash.sha256);
-            const signature = sjcl.codec.hex.fromBits(hmac.encrypt(bodyString));
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
+        <script>
+            document.getElementById('discoveryGatewayForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // 1. Define the shared secret (Must match your Mendix constant exactly)
+                const secret = "sei_systems_secure_gateway_01"; 
 
-            await fetch('https://crm315-sandbox.mxapps.io/rest/IncomingLead/v1/prospectiveLead', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-SEI-Signature': signature },
-                body: bodyString
+                // 2. Capture Tech Stack Selection
+                const selectedStack = Array.from(document.querySelectorAll('input[name="tech"]:checked'))
+                    .map(cb => cb.value);
+
+                // 3. Construct the Flattened Payload (Matches your simplified Mendix mapping)
+                const fullPayload = {
+                    source_system: "SENTRY-WEB-GATEWAY",
+                    event_id: crypto.randomUUID(),
+                    timestamp_utc: new Date().toISOString(),
+                    
+                    // Updated mapping including the new name field
+                    contact_name: document.getElementById('contact_name').value, 
+                    company_name: document.getElementById('company_name').value,
+                    industry: document.getElementById('industry').value || "Not Specified",
+                    employee_count: parseInt(document.getElementById('employee_count').value) || 0,
+                    contact_email: document.getElementById('email').value,
+                    
+                    tech_stack_match: selectedStack, 
+                    bottleneck: document.getElementById('bottleneck').value || "None provided",
+                    sentry_notes: "Initial intake from Discovery Gateway"
+                };
+
+                // 4. Stringify and Sign the Body
+                // IMPORTANT: Ensure no extra whitespace is added by using JSON.stringify(obj)
+                const bodyString = JSON.stringify(fullPayload);
+                const hmac = new sjcl.misc.hmac(sjcl.codec.utf8String.toBits(secret), sjcl.hash.sha256);
+                const signature = sjcl.codec.hex.fromBits(hmac.encrypt(bodyString));
+
+                console.log("Integrity Signature Generated:", signature);
+
+                // 5. Dispatch with X-SEI-Signature Header
+                try {
+                    const response = await fetch('https://crm315-sandbox.mxapps.io/rest/IncomingLead/v1/prospectiveLead', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'X-SEI-Signature': signature 
+                        },
+                        body: bodyString
+                    });
+
+                    if (response.ok) {
+                        alert("Strategic Discovery Transmitted. Integrity Verified.");
+                        document.getElementById('discoveryGatewayForm').reset();
+                    } else {
+                        const errorData = await response.text();
+                        console.error("Mendix Response Error:", errorData);
+                        alert(`Gateway Error: Handshake Failed (${response.status})`);
+                    }
+                } catch (error) {
+                    console.error("Network or Signature Failure:", error);
+                }
             });
-            alert("Roadmap Initialized.");
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
