@@ -113,23 +113,23 @@
 
                 // 3. Construct the Full Mendix-Expected Schema
                 const fullPayload = {
-                    event_metadata: {
-                        source_system: "SENTRY-WEB-GATEWAY",
-                        event_id: crypto.randomUUID(),
-                        timestamp_utc: new Date().toISOString()
-                        // Signature will be added to the Header per our new approach
-                    },
-                    prospect_data: prospect_data,
-                    sentry_analysis: {
-                        risk_score: 0,
-                        growth_index: 0,
-                        tech_stack_match: selectedStack, // Mapping tech stack here
-                        notes: "Initial intake from Discovery Gateway"
-                    }
-                };
+                // Metadata
+                source_system: "SENTRY-WEB-GATEWAY",
+                event_id: crypto.randomUUID(),
+                timestamp_utc: new Date().toISOString(),
+                
+                // Prospect Data (Flattened)
+                company_name: document.getElementById('company_name').value,
+                industry: document.getElementById('industry').value,
+                employee_count: parseInt(document.getElementById('employee_count').value) || 0,
+                contact_email: document.getElementById('email').value,
+                
+                // Analysis & Tech Stack
+                tech_stack_match: selectedStack, 
+                sentry_notes: "Initial intake from Discovery Gateway"
+            };
 
-                // 4. Sign the ENTIRE body for the Header (SOC 2 CC6.1)
-                const secret = "sei_systems_secure_gateway_01"; 
+                // Sign the flat object
                 const bodyString = JSON.stringify(fullPayload);
                 const hmac = new sjcl.misc.hmac(sjcl.codec.utf8String.toBits(secret), sjcl.hash.sha256);
                 const signature = sjcl.codec.hex.fromBits(hmac.encrypt(bodyString));
