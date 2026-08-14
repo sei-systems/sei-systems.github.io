@@ -248,3 +248,13 @@ footer {
     }
     .sei-title { font-size: 2.5rem; }
 }
+
+.form-input, select.form-input {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid #333;
+    color: var(--white);
+    padding: 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}

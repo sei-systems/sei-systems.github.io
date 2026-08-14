@@ -59,6 +59,44 @@
                     <label style="font-size: 0.7rem; color: var(--blue); margin-top: 1rem; display: block;">SENTRY AI (PARALLEL)</label>
                     <div class="velocity-track"><div id="bar-ai" class="velocity-bar bar-ai"></div></div>
                 </div>
+
+                                <!-- LAB 03: API PROXY ENGINE -->
+                <div class="sei-card" style="margin-top: 3rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <span class="sei-badge">Lab 03</span>
+                            <h3>API Proxy Execution Gateway</h3>
+                            <p>Route external API requests through SEI Systems' Spring Boot microservice with latency tracking.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <div class="form-group">
+                            <label for="proxyTargetUrl">Target Endpoint URL</label>
+                            <input type="text" id="proxyTargetUrl" class="form-input" value="https://api.github.com/zen">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="proxyMethod">HTTP Method</label>
+                                <select id="proxyMethod" class="form-input">
+                                    <option value="GET">GET</option>
+                                    <option value="POST">POST</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: flex-end;">
+                                <button class="sei-btn-action" style="width: 100%;" onclick="executeProxyCall()">
+                                    Execute Via Proxy
+                                </button>
+                            </div>
+                        </div>
+
+                        <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--blue); font-weight: 800; display: block; margin-top: 1rem;">
+                            Proxy Telemetry & Response Output
+                        </label>
+                        <div id="proxy-terminal" class="terminal-window">Awaiting invocation...</div>
+                    </div>
+                </div>
             </div>
         </main>
 
@@ -89,6 +127,37 @@
                 setTimeout(() => { document.getElementById('bar-ai').style.width = "100%"; }, 100);
                 setTimeout(() => { document.getElementById('bar-manual').style.width = "15%"; }, 100);
                 document.getElementById('vel-btn').innerText = "Benchmark Live";
+            }
+
+            async function executeProxyCall() {
+                const terminal = document.getElementById('proxy-terminal');
+                const targetUrl = document.getElementById('proxyTargetUrl').value;
+                const method = document.getElementById('proxyMethod').value;
+
+                terminal.innerHTML = `<span style="color: var(--blue);">[PROXY]: Transmitting request to target URL: ${targetUrl}...</span><br>`;
+
+                const payload = {
+                    url: targetUrl,
+                    method: method
+                };
+
+                try {
+                    const response = await fetch('https://api-proxy-1.onrender.com/api/v1/executor', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await response.json();
+
+                    terminal.innerHTML += `<span style="color: #00ff41;">[STATUS]: ${data.statusCode} OK</span><br>`;
+                    terminal.innerHTML += `<span style="color: #00ff41;">[LATENCY]: ${data.executionTimeMs} ms</span><br><br>`;
+                    terminal.innerHTML += `<strong>[PAYLOAD]:</strong><br>${JSON.stringify(data.body, null, 2)}`;
+                } catch (error) {
+                    terminal.innerHTML += `<span style="color: #ff4b2b;">[ERROR]: Failed to connect to Proxy Engine - ${error.message}</span>`;
+                }
             }
         </script>
     </body>
