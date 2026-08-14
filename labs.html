@@ -54,10 +54,13 @@
 
                 <div id="velocity-ui" style="margin-top: 2rem; display: none;">
                     <label style="font-size: 0.7rem; color: var(--blue);">MANUAL TRIAGE (LINEAR)</label>
-                    <div class="velocity-track"><div id="bar-manual" class="velocity-bar bar-manual"></div></div>
-                    
+                    <div class="velocity-track"><div id="bar-manual" class="velocity-bar bar-manual"></div>
+                </div>
                     <label style="font-size: 0.7rem; color: var(--blue); margin-top: 1rem; display: block;">SENTRY AI (PARALLEL)</label>
-                    <div class="velocity-track"><div id="bar-ai" class="velocity-bar bar-ai"></div></div>
+                    <div class="velocity-track">
+                        <div id="bar-ai" class="velocity-bar bar-ai"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="sei-card" style="margin-top: 3rem;">
@@ -88,13 +91,14 @@
                                     Execute Via Proxy
                                 </button>
                             </div>
-                        </div>
+                        </div> 
 
                         <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--blue); font-weight: 800; display: block; margin-top: 1rem;">
                             Proxy Telemetry & Response Output
                         </label>
                         <div id="proxy-terminal" class="terminal-window">Awaiting invocation...</div>
                     </div>
+            </div>
         </main>
 
         <script>
